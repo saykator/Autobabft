@@ -2,9 +2,10 @@ import tkinter as tk
 import pyautogui as pyag
 import time as t
 import random
+import keyboard as kb
 
 main = tk.Tk()
-main.title("Auto Babft v1.1")
+main.title("Auto Babft v0.2-alpha")
 main.geometry("384x64")
 main.resizable(False, False)
 main.configure(bg="black")
@@ -24,7 +25,7 @@ def clicking():
         isClicking = True
         print("started")
         mainButton.config(
-            text="Stop",
+            text="Stop (f8)",
             command=stopClicking,
             state="disabled"
         )
@@ -47,13 +48,21 @@ def stopClicking():
     isClicking = False
     print("stopped")
     mainButton.config(
-        text="Start",
+        text="Start (f8)",
         command=clicking
     )
 
+def toggleClicking(key):
+    if isClicking:
+        stopClicking()
+    else:
+        clicking()
+
+kb.on_press_key("f8", toggleClicking)
+
 mainButton = tk.Button(
     main,
-    text="Start",
+    text="Start (f8)",
     command=clicking,
     width=10,
     height=2,
