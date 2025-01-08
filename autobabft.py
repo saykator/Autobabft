@@ -1,12 +1,12 @@
+from cryptography.fernet import Fernet
 import base64
-
-autoclickerCode = base64.b64encode(b"""
-
 import tkinter as tk
 import pyautogui as pyag
 import time as t
 import random
 import keyboard as kb
+
+autobabftCode = b"""
 
 main = tk.Tk()
 main.title("Auto Babft v0.2-alpha")
@@ -82,6 +82,12 @@ mainButton.pack(pady=10)
 
 main.mainloop()
 
-""")
+"""
 
-exec(base64.b64decode(autoclickerCode))
+key = Fernet.generate_key()
+encryption_type = Fernet(key)
+encrypted_message = encryption_type.encrypt(autobabftCode)
+
+decrypted_message = encryption_type.decrypt(encrypted_message)
+
+exec(decrypted_message)
