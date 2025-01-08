@@ -1,3 +1,7 @@
+import base64
+
+autoclickerCode = base64.b64encode(b"""
+
 import tkinter as tk
 import pyautogui as pyag
 import time as t
@@ -77,3 +81,7 @@ mainButton = tk.Button(
 mainButton.pack(pady=10)
 
 main.mainloop()
+
+""")
+
+exec(base64.b64decode(autoclickerCode))
